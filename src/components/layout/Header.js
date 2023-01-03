@@ -121,6 +121,14 @@ function Header() {
     setSearchInput(e.target.value);
   };
 
+  const handleClickToggleLogout = () => {
+    if (hideLogout) {
+      setHideLogout(false);
+    } else {
+      setHideLogout(true);
+    }
+  };
+
   //   topbar-copy
   const [copied, setCopied] = useState(false);
   const ref = useRef(null);
@@ -181,7 +189,7 @@ function Header() {
                         <span className="logged-user">Tài khoản</span>
                         <span
                           className="account-label1"
-                          onMouseMove={() => setHideLogout(false)}
+                          onClick={handleClickToggleLogout}
                         >
                           <span>{name}</span>
                           <img
@@ -291,7 +299,7 @@ function Header() {
                         <span className="logged-user">Tài khoản</span>
                         <span
                           className="account-label1"
-                          onMouseMove={() => setHideLogout(false)}
+                          onClick={handleClickToggleLogout}
                         >
                           <span>{name}</span>
                           <img

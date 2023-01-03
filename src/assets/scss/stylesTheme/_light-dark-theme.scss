@@ -29,8 +29,22 @@ $themes: (
   bgCategory:(
     darkTheme: $black,
     lightTheme: $white
-  )
+  ),
 
+  textNormal:(
+    darkTheme: $white,
+    lightTheme: $black
+  ),
+
+  bgLoginMobile:(
+    darkTheme: $bgLoginDark,
+    lightTheme: $white
+  ),
+
+  bgInputLogin:(
+    darkTheme: $bginputLoginDark,
+    lightTheme: $bginputLogin
+  )
 );
 
 @mixin styles($mode) {

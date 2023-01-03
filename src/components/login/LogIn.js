@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import RegisterDesktop from "./RegisterDesktop";
 import LogInDesktop from "./LogInDesktop";
+import { useTheme } from "../utils/useTheme";
 
 export default () => {
   const [isShow, setIsShow] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
 
+  const theme = useTheme();
   return (
     <>
       {isShow ? (
-        <div className="login-desktop">
-          <div className="login-desktop-container">
-            <div className="login-desktop-content">
+        <div className={`login ${theme}`}>
+          <div className="login-container">
+            <div className="login-content">
               <button className="button-close" onClick={() => setIsShow(false)}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/fe/20/d7/6d7764292a847adcffa7251141eb4730.png"
@@ -42,8 +43,8 @@ export default () => {
                 </div>
               </div>
               <div className="login-right">
-                {/*<img src="https://salt.tikicdn.com/ts/upload/eb/f3/a3/25b2ccba8f33a5157f161b6a50f64a60.png" alt="sad" width='203' height='203' />*/}
-                <div className="login-right-content">
+                <img src={"/img/img-login.jpeg"} alt="decorLogin" />
+                {/* <div className="login-right-content">
                   <h4>Mua sắm tại Hasaki</h4>
                   <span>Siêu ưu đãi mỗi ngày</span>
                 </div>
@@ -73,7 +74,7 @@ export default () => {
                     Bằng việc tiếp tục, bạn đã chấp nhận{" "}
                     <Link to="/">điều khoản sử dụng</Link>
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

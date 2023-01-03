@@ -79,28 +79,6 @@ function RegisterDesktop() {
             setPasswordError("Invalida password. Must contain one number");
           }
         }}
-        // validationSchema={Yup.object().shape({
-        //     name: Yup.string().required("Họ và tên không được bỏ trống"),
-        //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
-        //     email: Yup.string().email().required("Email không được bỏ trống"),
-        //     password: Yup.string()
-        //         .required("Mật khẩu không được để trống")
-        //         .min(
-        //             6,
-        //             "Password is too short - should be 6 chars minimum."
-        //         )
-        //         .matches(
-        //             /(?=.*[0-9])/,
-        //             "Password must contain a number."
-        //         ),
-        //     phone: Yup.string()
-        //         .required("Số điện thoại không được bỏ trống")
-        //         .min(
-        //             10,
-        //             "Số điện thoại không hợp lệ"
-        //         ),
-        //     address: Yup.string().required("Địa chỉ không được bỏ trống"),
-        // })}
       >
         {(props) => {
           const { errors } = props;

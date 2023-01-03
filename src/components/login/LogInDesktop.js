@@ -12,6 +12,7 @@ function LogInDesktop() {
   const [noti, setNoti] = useState(false);
   const dispatch = useDispatch();
 
+  // console.log("propsLogin", props);
   async function loginUser(e) {
     e.preventDefault();
     try {
@@ -38,9 +39,9 @@ function LogInDesktop() {
 
   return (
     <>
-      <div className="login-left-content-heading">
-        <h4>Xin chào,</h4>
-        <p>Đăng nhập</p>
+      <div className="login-content-heading">
+        <h4>Đăng nhập</h4>
+        <p>Đăng ký</p>
       </div>
       <Formik
         validate={() => {
@@ -48,19 +49,6 @@ function LogInDesktop() {
 
           if (!password) setPasswordError("Mật khẩu không được bỏ trống!");
         }}
-        // validationSchema={Yup.object().shape({
-        //     username: Yup.string().required("Tên đăng nhập không được bỏ trống"),
-        //     password: Yup.string()
-        //         .required("Mật khẩu không được để trống")
-        //         .min(
-        //             6,
-        //             "Password is too short - should be 6 chars minimum."
-        //         )
-        //         .matches(
-        //             /(?=.*[0-9])/,
-        //             "Password must contain a number."
-        //         ),
-        // })}
       >
         {(props) => {
           const { errors, handleBlur } = props;

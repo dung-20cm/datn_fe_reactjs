@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./supUser.scss";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 const RequireSupPage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="sup-user">
       <div className="require-sup widthCustom">

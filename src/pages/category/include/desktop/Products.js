@@ -119,12 +119,12 @@ function Products({
                     }`}
                   >
                     <div className="thumbnail">
-                      <div className="thumbnail--icon-badge">
+                      {/* <div className="thumbnail--icon-badge">
                         <Images
                           src={item.pro_avatar || "/images/product-detault.png"}
                           alt="333"
                         />
-                      </div>
+                      </div> */}
                       <div className="thumbnail--product-img">
                         <Images
                           src={item.pro_avatar || "/images/product-detault.png"}
@@ -171,12 +171,12 @@ function Products({
                     }`}
                   >
                     <div className="thumbnail">
-                      <div className="thumbnail--icon-badge">
+                      {/* <div className="thumbnail--icon-badge">
                         <Images
                           src={item.pro_avatar || "/images/product-detault.png"}
                           alt="333"
                         />
-                      </div>
+                      </div> */}
                       <div className="thumbnail--product-img">
                         <Images
                           src={item.pro_avatar || "/images/product-detault.png"}

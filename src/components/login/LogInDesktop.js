@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setTokenLogin } from "../../store/authSlice";
 import authApi from "../../api/AuthService";
 
-function LogInDesktop() {
+function LogInDesktop(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
@@ -12,7 +12,7 @@ function LogInDesktop() {
   const [noti, setNoti] = useState(false);
   const dispatch = useDispatch();
 
-  // console.log("propsLogin", props);
+  const { setIsRegister } = props;
   async function loginUser(e) {
     e.preventDefault();
     try {
@@ -41,7 +41,7 @@ function LogInDesktop() {
     <>
       <div className="login-content-heading">
         <h4>Đăng nhập</h4>
-        <p>Đăng ký</p>
+        <p onClick={() => setIsRegister(true)}>Đăng ký</p>
       </div>
       <Formik
         validate={() => {
@@ -106,6 +106,29 @@ function LogInDesktop() {
           );
         }}
       </Formik>
+
+      <div className="other-login">
+        <div className="text">Or</div>
+        <div className="widget-social">
+          <ul>
+            <li>
+              <a href="#" className="active">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fab fa-google-plus-g"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </>
   );
 }

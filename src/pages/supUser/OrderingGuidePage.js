@@ -2,8 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./supUser.scss";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
 
 const OrderingGuidePage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="sup-user">
       {/* Page Hướng dẫn đặt hàng */}

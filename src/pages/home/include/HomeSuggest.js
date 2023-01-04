@@ -53,7 +53,6 @@ function HomeSuggest() {
               <h2>Gợi ý hôm nay</h2>
             </div>
           </div>
-          {/* <h2>Gợi ý hôm nay</h2> */}
 
           <div className="suggestion__title-list">
             {defaultCate ? (

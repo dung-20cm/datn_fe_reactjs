@@ -23,22 +23,9 @@ export default () => {
               <div className="login-left">
                 <div className="login-left-content">
                   {isRegister === false ? (
-                    <>
-                      <LogInDesktop />
-                      <p className="login-with-login">
-                        Bạn chưa có tài khoản?{" "}
-                        <p onClick={() => setIsRegister(true)}>Đăng ký</p>
-                      </p>
-                    </>
+                    <LogInDesktop setIsRegister={setIsRegister} />
                   ) : (
-                    <>
-                      <RegisterDesktop />
-                      <p className="login-with-login">
-                        <p onClick={() => setIsRegister(false)}>
-                          Đăng nhập bằng email
-                        </p>
-                      </p>
-                    </>
+                    <RegisterDesktop setIsRegister={setIsRegister} />
                   )}
                 </div>
               </div>

@@ -4,7 +4,7 @@ import * as EmailValidator from "email-validator";
 import authApi from "../../api/AuthService";
 // import * as Yup from "yup";
 
-function RegisterDesktop() {
+function RegisterDesktop(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -49,11 +49,12 @@ function RegisterDesktop() {
     }
   }
 
+  const { setIsRegister } = props;
   return (
     <>
-      <div className="login-left-content-heading">
-        <h4>Xin chào,</h4>
-        <p>Đăng nhập hoặc Tạo tài khoản</p>
+      <div className="login-content-heading">
+        <h4>Đăng ký</h4>
+        <p onClick={() => setIsRegister(false)}>Đăng nhập</p>
       </div>
       <Formik
         validate={() => {

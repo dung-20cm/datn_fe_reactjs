@@ -120,8 +120,6 @@
                     }
                 }
 
-
-
                 .login-left {
                     width: 500px;
                     padding: 40px 45px 24px;
@@ -150,6 +148,72 @@
                             margin: 0px;
                             font-size: 18px;
                             color: red;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .other-login {
+                        position: relative;
+                        width: 220px;
+                        height: 95px;
+                        background: rgba(99, 69, 237, 0.07);
+                        border: 1px solid rgba(99, 69, 237, 0.12);
+                        box-sizing: border-box;
+                        border-radius: 7px;
+                        margin: 0 auto;
+                        margin-top: 60px;
+
+                        @media (max-width:768px){
+                            display: none;
+                        }
+
+                        .text {
+                            position: absolute;
+                            top: -16px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: 40px;
+                            height: 30px;
+                            line-height: 30px;
+                            background: #6345ed;
+                            border-radius: 7px;
+                            text-align: center;
+                            color: #fff;
+                        }
+
+                        .widget-social {
+                            margin-top: 25px;
+
+                            ul {
+                                display: flex;
+                                justify-content: center;
+                                list-style-type: none;
+                                padding: 0;
+                                margin: 0;
+
+                                li{
+                                    margin-right: 15px;
+
+                                    a {
+                                        position: relative;
+                                        color: #fff;
+                                        width: 35px;
+                                        height: 35px;
+                                        font-size: 15px;
+                                        background: #6345ed;
+                                        border-radius: 50%;
+                                        text-align: center;
+                                        justify-content: center;
+                                        align-items: center;
+                                        display: -webkit-box;
+                                        display: -moz-box;
+                                        display: -ms-flexbox;
+                                        display: -webkit-flex;
+                                        display: flex;
+                                        font-size: 13px;
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -227,13 +291,18 @@
                     background: white;
                     width: 300px;
                     border-left: 1px solid #dedede;
-                    -webkit-box-align: center;
-                    align-items: center;
-                    -webkit-box-pack: center;
-                    justify-content: center;
-                    display: flex;
-                    flex-direction: column;
+                    // -webkit-box-align: center;
+                    // align-items: center;
+                    // -webkit-box-pack: center;
+                    // justify-content: center;
+                    // display: flex;
+                    // flex-direction: column;
                     border-radius: 0px 20px 20px 0px;
+                    height:600px;
+
+                    img{
+                        height: 100%;
+                    }
 
                     .login-right-content {
                         margin-bottom: 50px;

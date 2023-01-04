@@ -11,7 +11,9 @@ function Products({ products, searchInput }) {
 
   const getSearchProducts = () => {
     setSearchProducts(
-      products.filter((item) => item.pro_name.toLowerCase().match(searchInput))
+      products.filter((item) =>
+        item.pro_name.toLowerCase().match(searchInput.toLowerCase())
+      )
     );
     return searchProducts;
   };

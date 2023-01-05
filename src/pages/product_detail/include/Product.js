@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { addToCart } from "../../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
@@ -16,6 +16,12 @@ function Product({ products, pro_price, loading }) {
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
   // const dataToken = useSelector((state) => state.authReduce.token);
+  const [added, setAdded] = useState(false);
+
+  const handleAdd = () => {
+    setAdded(!added);
+    addToCartRedux();
+  };
 
   const addToCartRedux = async () => {
     // if (!dataToken || !dataToken.accessToken) {
@@ -82,16 +88,13 @@ function Product({ products, pro_price, loading }) {
 
           <div className="product-content">
             <div className="content-header">
-              {/* {isWideScreen() && */}
-              <>
-                <div className="product-brand">
-                  <span>
-                    <h6>Thương hiệu:</h6>
-                    <Link to=""> Hasaki</Link>
-                  </span>
-                </div>
-              </>
-              {/* } */}
+              <div className="product-brand">
+                <span>
+                  <h6>Thương hiệu:</h6>
+                  <Link to=""> Hasaki</Link>
+                </span>
+              </div>
+
               <h1 className="product-title">
                 {products?.pro_name || <Skeleton count={1} />}
               </h1>
@@ -162,8 +165,22 @@ function Product({ products, pro_price, loading }) {
                       </div>
                       {localStorage.getItem("accessToken") ? (
                         <div className="group-button">
-                          <button className="btnadd" onClick={addToCartRedux}>
+                          {/* <button className="btnadd" onClick={addToCartRedux}>
                             Chọn Mua
+                          </button> */}
+                          <button
+                            className={`add-to-cart ${added && "added"} btnadd`}
+                            onClick={handleAdd}
+                          >
+                            <div className="default">Add to cart</div>
+                            <div className="success">Added</div>
+                            <div className="cart">
+                              <div>
+                                <div></div>
+                                <div></div>
+                              </div>
+                            </div>
+                            <div className="dots"></div>
                           </button>
                         </div>
                       ) : (
@@ -172,7 +189,18 @@ function Product({ products, pro_price, loading }) {
                             modal
                             trigger={
                               <div className="group-button">
-                                <button className="btnadd">Chọn Mua</button>
+                                {/* <button className="btnadd">Chọn Mua</button> */}
+                                <button className="add-to-cart">
+                                  <div className="default">Add to cart</div>
+                                  <div className="success">Added</div>
+                                  <div className="cart">
+                                    <div>
+                                      <div></div>
+                                      <div></div>
+                                    </div>
+                                  </div>
+                                  <div className="dots"></div>
+                                </button>
                               </div>
                             }
                           >

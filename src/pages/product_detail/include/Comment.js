@@ -76,9 +76,6 @@ function Comment({ id, products }) {
     getRate();
   }, [id, refresh]);
 
-  console.log("AuthComment", auth);
-  console.log("showRate123418", showRate);
-
   const getRate = async () => {
     let arr = [];
     let star = 0;

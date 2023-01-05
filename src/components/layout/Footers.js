@@ -14,9 +14,9 @@ export default function Footers() {
       <div className="cm-width">
         <div className={`new-letter`}>
           <div className="new-letter-content">
-            <h3 className="heading">Newsletters</h3>
+            <h3 className="heading">Liên hệ với chúng tôi</h3>
             <p className="sub-heading">
-              Most popular gaming digital nft market place{" "}
+              Để lại những trải nghiệm mua hàng của bạn nhé!!!
             </p>
           </div>
           <div className="new-letter-input">

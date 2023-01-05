@@ -4,8 +4,11 @@ import authApi from "../../../api/AuthService";
 import React, { useEffect, useState } from "react";
 import cartApi from "../../../api/CartService";
 import Skeleton from "react-loading-skeleton";
+import { useTheme } from "../../../components/utils/useTheme";
 
 function OrderDetail() {
+  const theme = useTheme();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -28,10 +31,10 @@ function OrderDetail() {
   };
   const getOrderProducts = async () => {
     const response = await cartApi.getTransaction();
-    response.data.forEach((item, index) => {
-      if (item.id === id) {
-        setProductList(item.orders);
-        console.log("danh sach san pham: ", item.orders);
+    response.data.map((item, index) => {
+      if (item?.id == id) {
+        setProductList(item?.orders);
+        console.log("danh sach san pham: ", item?.orders);
       }
     });
     setLoading(false);
@@ -87,7 +90,7 @@ function OrderDetail() {
           </div>
           <div className="page-container">
             <SideNavBar />
-            <div className="right-container">
+            <div className={`right-container ${theme}`}>
               <div className="heading-title">
                 <span>Chi tiết đơn hàng #{id} </span>
                 <span className="heading-title-bold"></span>
@@ -115,7 +118,7 @@ function OrderDetail() {
                     <div className="box-sub">
                       Giao trước: hh:mm ngày dd/mm/yy
                     </div>
-                    <div className="box-sub">Phí vận chuyển: 15.000đ</div>
+                    <div className="box-sub">Phí vận chuyển: 30.000đ</div>
                   </div>
                 </div>
                 <div className="seperate-box" />

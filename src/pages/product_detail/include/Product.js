@@ -38,6 +38,13 @@ function Product({ products, pro_price, loading }) {
     setCount(1);
   }, [id]);
 
+  let price = pro_price?.replace(/,/g, "");
+  console.log("countefajkjksh192349803", count);
+  console.log(
+    "price1SP99999999999",
+
+    Number(price)
+  );
   return (
     <>
       {loading === true ? (
@@ -115,7 +122,13 @@ function Product({ products, pro_price, loading }) {
                 <div className="price-and-icon">
                   <div className="price-">
                     <div className="current-price">
-                      {pro_price || <Skeleton count={1} />} ₫
+                      {
+                        // pro_price
+                        (price * count).toLocaleString() || (
+                          <Skeleton count={1} />
+                        )
+                      }{" "}
+                      ₫
                     </div>
                     <div className="last-price">
                       {products?.pro_discount_value !== 0 ? "20.000 đ" : null}
@@ -128,90 +141,83 @@ function Product({ products, pro_price, loading }) {
                   </div>
                 </div>
 
-                <>
-                  <div className="addtocart">
-                    <div className="count">
-                      <p>Số Lượng</p>
-                      <div className="group-input">
+                <div className="addtocart">
+                  <div className="count">
+                    <p>Số Lượng</p>
+                    <div className="group-input">
+                      <button
+                        disabled={`${count < 2 ? "{true}" : ""}`}
+                        className={`${count < 2 ? "disable" : "enable"}`}
+                        onClick={() => setCount(count - 1)}
+                      >
+                        <img
+                          alt="/"
+                          src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
+                          width="20"
+                          height="20"
+                        />
+                      </button>
+                      <input
+                        type="text"
+                        value={count}
+                        className="input"
+                        readOnly
+                      ></input>
+                      <button
+                        className="enable"
+                        onClick={() => setCount(count + 1)}
+                      >
+                        <img
+                          alt="/"
+                          src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
+                          width="20"
+                          height="20"
+                        />
+                      </button>
+                    </div>
+                    {localStorage.getItem("accessToken") ? (
+                      <div className="group-button">
                         <button
-                          disabled={`${count < 2 ? "{true}" : ""}`}
-                          className={`${count < 2 ? "disable" : "enable"}`}
-                          onClick={() => setCount(count - 1)}
+                          className={`add-to-cart ${added && "added"} btnadd`}
+                          onClick={handleAdd}
                         >
-                          <img
-                            alt="/"
-                            src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
-                            width="20"
-                            height="20"
-                          />
-                        </button>
-                        <input
-                          type="text"
-                          value={count}
-                          className="input"
-                          readOnly
-                        ></input>
-                        <button
-                          className="enable"
-                          onClick={() => setCount(count + 1)}
-                        >
-                          <img
-                            alt="/"
-                            src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
-                            width="20"
-                            height="20"
-                          />
+                          <div className="default">Add to cart</div>
+                          <div className="success">Added</div>
+                          <div className="cart">
+                            <div>
+                              <div></div>
+                              <div></div>
+                            </div>
+                          </div>
+                          <div className="dots"></div>
                         </button>
                       </div>
-                      {localStorage.getItem("accessToken") ? (
-                        <div className="group-button">
-                          {/* <button className="btnadd" onClick={addToCartRedux}>
-                            Chọn Mua
-                          </button> */}
-                          <button
-                            className={`add-to-cart ${added && "added"} btnadd`}
-                            onClick={handleAdd}
-                          >
-                            <div className="default">Add to cart</div>
-                            <div className="success">Added</div>
-                            <div className="cart">
-                              <div>
-                                <div></div>
-                                <div></div>
-                              </div>
-                            </div>
-                            <div className="dots"></div>
-                          </button>
-                        </div>
-                      ) : (
-                        <>
-                          <Popup
-                            modal
-                            trigger={
-                              <div className="group-button">
-                                {/* <button className="btnadd">Chọn Mua</button> */}
-                                <button className="add-to-cart">
-                                  <div className="default">Add to cart</div>
-                                  <div className="success">Added</div>
-                                  <div className="cart">
-                                    <div>
-                                      <div></div>
-                                      <div></div>
-                                    </div>
+                    ) : (
+                      <div>
+                        <Popup
+                          modal
+                          trigger={
+                            <div className="group-button">
+                              <button className="add-to-cart">
+                                <div className="default">Add to cart</div>
+                                <div className="success">Added</div>
+                                <div className="cart">
+                                  <div>
+                                    <div></div>
+                                    <div></div>
                                   </div>
-                                  <div className="dots"></div>
-                                </button>
-                              </div>
-                            }
-                          >
-                            <Login />
-                          </Popup>
-                        </>
-                      )}
-                    </div>
+                                </div>
+                                <div className="dots"></div>
+                              </button>
+                            </div>
+                          }
+                        >
+                          <Login />
+                        </Popup>
+                      </div>
+                    )}
                   </div>
-                </>
-                {/* )} */}
+                </div>
               </div>
             </div>
           </div>

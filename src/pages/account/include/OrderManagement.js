@@ -237,8 +237,6 @@ function OrderManagement() {
                                           <span className="number">
                                             x{item2.od_qty}
                                           </span>
-
-
                                         </div>
                                       </div>
                                       <div className="list-product-price">
@@ -275,9 +273,9 @@ function OrderManagement() {
                             >
                               Xóa
                             </button>
-                            <Link to="">
+                            {/* <Link to="">
                               <button className="btn-order">Mua lại</button>
-                            </Link>
+                            </Link> */}
                             <Link to={`./orderdetail/id=${item.id}`}>
                               <button className="btn-order">
                                 Xem chi tiết

@@ -54,7 +54,7 @@ function ProductSummary({ deal, disCount }) {
         </div>
       ) : (
         <Swiper {...settingsSlide}>
-          {products.map((item, index) => (
+          {products.slice(1, 12).map((item, index) => (
             <SwiperSlide key={index}>
               <div className="dashboard-product--item">
                 <Link

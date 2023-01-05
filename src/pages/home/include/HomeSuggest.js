@@ -5,12 +5,16 @@ import categoryApi from "../../../api/CategoryService";
 import Skeleton from "react-loading-skeleton";
 import productApi from "../../../api/ProductService";
 
+let page = 1;
+let page_size = 200;
+
 function HomeSuggest() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingProduct, setLoadingProduct] = useState(true);
   const [products, setProducts] = useState([]);
   const [defaultCate, setDefaultCate] = useState(true);
+  const [more, setMore] = useState(12);
 
   const getCategories = async (params) => {
     const response = await categoryApi.getListsCategory(params);
@@ -29,8 +33,8 @@ function HomeSuggest() {
     setCategories(title);
   }
 
-  const getProducts = async (params) => {
-    const response = await productApi.getListsProducts(params);
+  const getProducts = async () => {
+    const response = await productApi.getListsProductsByPage(page, page_size);
     setProducts(response.data);
     setLoadingProduct(false);
   };
@@ -53,44 +57,39 @@ function HomeSuggest() {
               <h2>Gợi ý hôm nay</h2>
             </div>
           </div>
+          {/* <h2>Gợi ý hôm nay</h2> */}
 
           <div className="suggestion__title-list">
-            {defaultCate ? (
-              <>
-                {categories.map((item, i) => {
-                  return i < 8 ? (
-                    <div
-                      key={i}
-                      className={`tab ${
-                        item.id == categories[0].id ? "active" : ""
-                      }`}
-                      onClick={() => {
-                        changeTab(item.id);
-                        setDefaultCate(false);
-                      }}
-                    >
-                      <Images alt="test" src={item.c_avatar} />
-                      <div className="tab-text fs-13">{item.c_name}</div>
-                    </div>
-                  ) : null;
-                })}
-              </>
-            ) : (
-              <>
-                {categories.map((item, i) => {
-                  return i < 8 ? (
-                    <div
-                      key={i}
-                      className={`tab ${item.tab ? "active" : ""}`}
-                      onClick={() => changeTab(item.id)}
-                    >
-                      <Images alt="test" src={item.c_avatar} />
-                      <div className="tab-text fs-13">{item.c_name}</div>
-                    </div>
-                  ) : null;
-                })}
-              </>
-            )}
+            {defaultCate
+              ? categories.slice(0, 8).map((item, i) => (
+                  <div
+                    key={i}
+                    className={`tab ${
+                      item.id == categories[0].id ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      changeTab(item.id);
+                      setDefaultCate(false);
+                      setMore(18);
+                    }}
+                  >
+                    <Images alt="test" src={item.c_avatar} />
+                    <div className="tab-text fs-13">{item.c_name}</div>
+                  </div>
+                ))
+              : categories.slice(0, 8).map((item, i) => (
+                  <div
+                    key={i}
+                    className={`tab ${item.tab ? "active" : ""}`}
+                    onClick={() => {
+                      changeTab(item.id);
+                      setMore(18);
+                    }}
+                  >
+                    <Images alt="test" src={item.c_avatar} />
+                    <div className="tab-text fs-13">{item.c_name}</div>
+                  </div>
+                ))}
           </div>
         </div>
         <div className="suggestion__product">
@@ -98,12 +97,12 @@ function HomeSuggest() {
             <div className="dashboard-product--item">
               {defaultCate ? (
                 <>
-                  {products.map((item2, i) => {
+                  {products.slice(0, more).map((item2, i) => {
                     {
                       return (
                         <Link
                           key={i}
-                          to={`/${item2.pro_slug}/${item2.id}`}
+                          to={`/${item2.pro_slug}-${item2.id}`}
                           className="product-item"
                         >
                           <div
@@ -166,82 +165,81 @@ function HomeSuggest() {
                 </>
               ) : (
                 <>
-                  {products.map((item2, i) => {
-                    {
-                      if (item2.pro_category_id == tabNum) {
-                        return (
-                          <Link
-                            key={i}
-                            to={`/${item2.pro_slug}/${item2.id}`}
-                            className="product-item"
-                          >
-                            <div
-                              className={`product-item--style ${
-                                !deal ? "not-style" : ""
-                              }`}
-                            >
-                              <div className="thumbnail">
-                                <div className="thumbnail--product-img">
-                                  <Images src={item2.pro_avatar} alt="333" />
-                                </div>
-                              </div>
-                              <div className="infor">
-                                {!deal && (
-                                  <>
-                                    <div className="name">
-                                      <h3 className="fs-10">
-                                        {item2.pro_name}
-                                      </h3>
-                                    </div>
-                                    <div
-                                      className={`price-discount ${
-                                        item2.prodiscount_value !== 0
-                                          ? "has-discount"
-                                          : ""
-                                      }`}
-                                    >
-                                      <div className="price-discount__price">
-                                        {item2.pro_price.toLocaleString()} ₫
-                                      </div>
-                                    </div>
-                                  </>
-                                )}
-                                {deal && (
-                                  <>
-                                    <div className="deal">
-                                      <div
-                                        className={`price-discount ${
-                                          item2.prodiscount_value !== 0
-                                            ? "has-discount"
-                                            : ""
-                                        }`}
-                                      >
-                                        <div className="price-discount__price">
-                                          {item2.pro_price.toLocaleString()} ₫
-                                        </div>
-                                        <div className="price-discount__discount">
-                                          {item2.pro_discount_value
-                                            ? item2.pro_discount_value + "%"
-                                            : ""}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </>
-                                )}
-                              </div>
+                  {products
+                    .filter((item) =>
+                      item.pro_category_id.toString().match(tabNum)
+                    )
+                    .slice(0, more)
+                    .map((item2, i) => (
+                      <Link
+                        key={i}
+                        to={`/${item2.pro_slug}-${item2.id}`}
+                        className="product-item"
+                      >
+                        <div
+                          className={`product-item--style ${
+                            !deal ? "not-style" : ""
+                          }`}
+                        >
+                          <div className="thumbnail">
+                            <div className="thumbnail--product-img">
+                              <Images src={item2.pro_avatar} alt="333" />
                             </div>
-                          </Link>
-                        );
-                      }
-                    }
-                  })}
+                          </div>
+                          <div className="infor">
+                            {!deal && (
+                              <>
+                                <div className="name">
+                                  <h3 className="fs-10">{item2.pro_name}</h3>
+                                </div>
+                                <div
+                                  className={`price-discount ${
+                                    item2.prodiscount_value !== 0
+                                      ? "has-discount"
+                                      : ""
+                                  }`}
+                                >
+                                  <div className="price-discount__price">
+                                    {item2.pro_price.toLocaleString()} ₫
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                            {deal && (
+                              <>
+                                <div className="deal">
+                                  <div
+                                    className={`price-discount ${
+                                      item2.prodiscount_value !== 0
+                                        ? "has-discount"
+                                        : ""
+                                    }`}
+                                  >
+                                    <div className="price-discount__price">
+                                      {item2.pro_price.toLocaleString()} ₫
+                                    </div>
+                                    <div className="price-discount__discount">
+                                      {item2.pro_discount_value
+                                        ? item2.pro_discount_value + "%"
+                                        : ""}
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                 </>
               )}
             </div>
           </div>
-          <Link to="/" className="view-more">
-            Xem thêm
-          </Link>
+          {more < 24 && (
+            <button className="view-more" onClick={() => setMore(more + 6)}>
+              Xem thêm
+            </button>
+          )}
         </div>
       </>
     );

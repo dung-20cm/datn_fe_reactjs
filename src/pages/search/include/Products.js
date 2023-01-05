@@ -48,12 +48,12 @@ function Products({ products, searchInput }) {
                   }`}
                 >
                   <div className="thumbnail">
-                    <div className="thumbnail--icon-badge">
+                    {/* <div className="thumbnail--icon-badge">
                       <Images
                         src={item.pro_avatar || "/images/product-detault.png"}
                         alt="333"
                       />
-                    </div>
+                    </div> */}
                     <div className="thumbnail--product-img">
                       <Images
                         src={item.pro_avatar || "/images/product-detault.png"}
@@ -65,7 +65,7 @@ function Products({ products, searchInput }) {
                     <>
                       <div className="badge-service"></div>
                       <div className="name">
-                        <p>Ad</p>
+                        {/* <p>Ad</p> */}
                         <h3 className="fs-10">{item.pro_name}</h3>
                       </div>
                       <div className={`price-discount has-discount`}>
@@ -91,13 +91,6 @@ function Products({ products, searchInput }) {
                 </div>
               </Link>
             </div>
-
-            // <ProductSummary
-            //     disCount={disCount}
-            //     setDistCount={setDistCount}
-            //     deal={false}
-            //     price={undefined} sold={undefined}
-            // />
           ))}
         </div>
         <Pagination

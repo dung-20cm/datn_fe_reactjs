@@ -48,24 +48,10 @@ function ProductDetailPage() {
           />
           <SimilarProduct />
           <ProductDescribe products={products} />
-          <Comment />
+          <Comment id={id} products={products} />
           <HomeSuggest />
         </div>
       </>
-      {/* {isWideScreen() &&
-            }
-
-            {!isWideScreen() &&
-                <>
-                    <DetailHeader />
-                    <Product />
-                    <SimilarProduct />
-                    <ProductDescribe />
-                    <Comment />
-                    <HomeSuggest />
-                    <DetailFooter />
-                </>
-            } */}
     </main>
   );
 }

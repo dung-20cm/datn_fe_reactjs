@@ -100,7 +100,7 @@ function OrderDetail() {
               </div>
               <div className="heading-detail-container2">
                 <div className="order-box-content">
-                  <div>ĐỊA CHỈ NGƯỜI NHẬN</div>
+                  <div className="box-title">ĐỊA CHỈ NGƯỜI NHẬN</div>
                   <div className="box-content">
                     <div className="box-main">{name}</div>
                     <div className="box-sub">Địa chỉ: {address}</div>
@@ -109,7 +109,7 @@ function OrderDetail() {
                 </div>
                 <div className="seperate-box" />
                 <div className="order-box-content">
-                  <div>HÌNH THỨC GIAO HÀNG</div>
+                  <div className="box-title">HÌNH THỨC GIAO HÀNG</div>
                   <div className="box-content">
                     <div className="box-sub">Giao trong ngày</div>
                     <div className="box-sub">
@@ -120,7 +120,7 @@ function OrderDetail() {
                 </div>
                 <div className="seperate-box" />
                 <div className="order-box-content">
-                  <div>HÌNH THỨC THANH TOÁN</div>
+                  <div className="box-title">HÌNH THỨC THANH TOÁN</div>
                   <div className="box-content">
                     <div className="box-sub">
                       Thanh toán tiền mặt khi nhận hàng

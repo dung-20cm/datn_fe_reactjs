@@ -469,7 +469,9 @@ function Header() {
                         )}
                         {arr
                           .filter((item) =>
-                            item.name.toLowerCase().match(searchInput)
+                            item.name
+                              .toLowerCase()
+                              .match(searchInput.toLowerCase())
                           )
                           .slice(0, 2)
                           .map((item, index) => (
@@ -487,7 +489,9 @@ function Header() {
                           ))}
                         {dataList
                           .filter((item) =>
-                            item.pro_name.toLowerCase().match(searchInput)
+                            item.pro_name
+                              .toLowerCase()
+                              .match(searchInput.toLowerCase())
                           )
                           .slice(0, 5)
                           .map((item, index) => (

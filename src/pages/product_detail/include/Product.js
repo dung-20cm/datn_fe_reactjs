@@ -1,29 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { isWideScreen } from "../../../helpers/screen";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addToCart } from "../../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
+import Login from "../../../components/login/LogIn";
+import Popup from "reactjs-popup";
 
 function Product({ products, pro_price, loading }) {
+  let { id } = useParams();
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
-  const dataToken = useSelector((state) => state.authReduce.token);
+  // const dataToken = useSelector((state) => state.authReduce.token);
 
   const addToCartRedux = async () => {
-    if (!dataToken || !dataToken.accessToken) {
-      alert(" Đăng nhập để có thể mua hàng");
-      return;
-    }
+    // if (!dataToken || !dataToken.accessToken) {
+    //   alert(" Đăng nhập để có thể mua hàng");
+    //   return;
+    // }
     products.quantity = count;
     dispatch(addToCart(products));
     setCount(1);
     console.log(products);
   };
+
+  useEffect(() => {
+    setCount(1);
+  }, [id]);
 
   return (
     <>
@@ -39,7 +46,6 @@ function Product({ products, pro_price, loading }) {
       ) : (
         <div className="product-detail">
           <div className="product-img">
-            {/* {isWideScreen() && ( */}
             <>
               <div className="group-img">
                 {<img alt="/" src={products?.pro_avatar} /> || (
@@ -70,36 +76,6 @@ function Product({ products, pro_price, loading }) {
                 />
               </div>
             </>
-            {/* // )} */}
-            {/* {!isWideScreen() && (
-              <>
-                <div className="review-img1">
-                  <Swiper
-                    spaceBetween={5}
-                    slidesPerView={1}
-                    speed={500}
-                    navigation={true}
-                    pagination={{ clickable: true }}
-                    className="review-swiper"
-                  >
-                    <div className="swiper-button-prev" />
-                    <SwiperSlide>
-                      <img
-                        alt="/"
-                        src="https://salt.tikicdn.com/cache/750x750/ts/product/67/cc/b0/df989a25d152811771de83e135022d4c.png.webp"
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img
-                        alt="/"
-                        src="https://salt.tikicdn.com/cache/750x750/ts/product/2a/3b/a1/694060a125c0d42ba5d2fafc511b6ec3.jpg.webp"
-                      />
-                    </SwiperSlide>
-                    <div className="swiper-button-next" />
-                  </Swiper>
-                </div>
-              </>
-            )} */}
           </div>
 
           <div className="seperate" />
@@ -148,53 +124,7 @@ function Product({ products, pro_price, loading }) {
                     </div>
                   </div>
                 </div>
-                {/*<div className="coupon-seperate"/>*/}
-                {/*<div className="coupon">*/}
-                {/*    <div className="coupon-text">8 Mã giảm giá</div>*/}
-                {/*    <div className="coupon-tags">*/}
-                {/*        <div className="coupon-tag">Giảm 45K</div>*/}
-                {/*        <div className="coupon-tag">Giảm 200K</div>*/}
-                {/*        <div className="coupon-tag">Giảm 300K</div>*/}
-                {/*        <img alt="/" src="https://salt.tikicdn.com/ts/upload/63/43/b6/472934eece91531f0855b86a00a3b1a1.png"/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
 
-                {/* <div className="addr-deli"> */}
-                {/* <div className="change-addr">*/}
-                {/*    <div>*/}
-                {/*        <span>Giao đến </span>*/}
-                {/*        <span className="Adress">Q. Hoàn Kiếm, P. Hàng Trống, Hà Nội</span>*/}
-                {/*        <span> - </span>*/}
-                {/*        <span className="addr-change">Đổi địa chỉ</span>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                {/*<div className="deli-inner">*/}
-                {/*    <div className="shipping-info">*/}
-                {/*        <div className="info-header">*/}
-                {/*            <img alt="/" src="https://salt.tikicdn.com/ts/upload/67/e4/c2/02b5400b39bb3371e06d33c1e9f4d854.png"/>*/}
-                {/*            <div className="divider"></div>*/}
-                {/*            <div className="info-highlight">Thứ 2, ngày 17/10</div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-
-                {/*    <div className="shipping-fee">*/}
-                {/*        <div className="fee-name">Vận chuyển: </div>*/}
-                {/*        <div className="fee-current"> 338.000₫</div>*/}
-                {/*        <div className="fee-origin">358.000đ </div>*/}
-                {/*    </div>*/}
-                {/*</div> */}
-
-                {/* {isWideScreen() &&
-                                    <>
-                                        <div className="btnchat">
-                                            <span>Chat với nhà bán về cách lắp đặt</span>
-                                            <img alt="/" src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/arrow-right-blue.svg" width="12" height="12" />
-                                        </div>
-                                    </>}
-                                {!isWideScreen && <div></div>}
-                            </div> */}
-
-                {/* {isWideScreen() && ( */}
                 <>
                   <div className="addtocart">
                     <div className="count">
@@ -230,15 +160,26 @@ function Product({ products, pro_price, loading }) {
                           />
                         </button>
                       </div>
-                      <div className="group-button">
-                        <button className="btnadd" onClick={addToCartRedux}>
-                          Chọn Mua
-                        </button>
-                        {/*<button className="btnpay">*/}
-                        {/*    Trả góp*/}
-                        {/*    <span>454.166 đ/tháng</span>*/}
-                        {/*</button>*/}
-                      </div>
+                      {localStorage.getItem("accessToken") ? (
+                        <div className="group-button">
+                          <button className="btnadd" onClick={addToCartRedux}>
+                            Chọn Mua
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          <Popup
+                            modal
+                            trigger={
+                              <div className="group-button">
+                                <button className="btnadd">Chọn Mua</button>
+                              </div>
+                            }
+                          >
+                            <Login />
+                          </Popup>
+                        </>
+                      )}
                     </div>
                   </div>
                 </>

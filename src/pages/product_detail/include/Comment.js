@@ -1,4 +1,10 @@
-import { Link, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useSearchParams,
+  useNavigate,
+  createSearchParams,
+} from "react-router-dom";
 import { isWideScreen } from "../../../helpers/screen";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -20,7 +26,7 @@ function Comment({ id, products }) {
   const [showRate, setShowRate] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [alert, setAlert] = useState(false);
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
 
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState();
@@ -31,6 +37,7 @@ function Comment({ id, products }) {
   const [vote, setVote] = useState([]);
   const [countComment, setCountComment] = useState();
   const [voteStar, setVoteStar] = useState(0);
+  const [number, setNumber] = useState();
 
   const [percent1, setPercent1] = useState(0);
   const [percent2, setPercent2] = useState(0);
@@ -39,6 +46,9 @@ function Comment({ id, products }) {
   const [percent5, setPercent5] = useState(0);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const location = useLocation();
+  let { searchParams } = useSearchParams();
+  const navigate = useNavigate();
 
   function currentTableData() {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -65,6 +75,9 @@ function Comment({ id, products }) {
     getUser();
     getRate();
   }, [id, refresh]);
+
+  console.log("AuthComment", auth);
+  console.log("showRate123418", showRate);
 
   const getRate = async () => {
     let arr = [];
@@ -131,6 +144,45 @@ function Comment({ id, products }) {
     return tmp;
   };
 
+  const handleClickVote = async (vote_number) => {
+    console.log("--------------- number: ", vote_number);
+    let paramsQuery = location.search;
+    console.log("paramsQuery", paramsQuery);
+    let query = new URLSearchParams(paramsQuery);
+    let value = query.get("number");
+    console.log("============== value: ", value);
+    if (value) {
+      if (vote_number != value) {
+        // kiem tra xem da co trong array chua
+        if (value.includes(vote_number)) {
+          if ("," + vote_number) {
+            value = value.replace("," + vote_number, "");
+          }
+          if (vote_number + ",") {
+            value = value.replace(vote_number + ",", "");
+          }
+        } else {
+          console.log("else------------ coongj them");
+          value += "," + vote_number;
+        }
+      } else {
+        value = "";
+      }
+    } else {
+      value = vote_number;
+    }
+    // có tồn tại number && value là gì
+
+    console.log("--------------- value: ", value);
+    let params = {
+      number: decodeURIComponent(value),
+    };
+    const options = {
+      search: `?${createSearchParams(params)}`,
+    };
+    navigate(options, { replace: true });
+  };
+
   const handleSubmit = async () => {
     let data = {
       v_content: content,
@@ -164,9 +216,6 @@ function Comment({ id, products }) {
   const handleRefresh = () => {
     setRefresh(!refresh);
   };
-
-  const [searchParams] = useSearchParams();
-  console.log(searchParams);
 
   return (
     <div className="cmt-container">
@@ -762,18 +811,40 @@ function Comment({ id, products }) {
                   <div className="filter-label">Lọc xem theo : </div>
                   <div className="filter-inner">
                     <span
-                      className={`${active === true ? "filter-active" : ""}`}
-                      onClick={() => setActive(!active)}
+                      className="filter-"
+                      onClick={() => handleClickVote(5)}
+                      id="number"
                     >
-                      Mới nhất
+                      5 &#9733;
                     </span>
-                    <span>Có hình ảnh</span>
-                    <span>Đã mua hàng</span>
-                    <span>5 &#9733;</span>
-                    <span>4 &#9733;</span>
-                    <span>3 &#9733;</span>
-                    <span>2 &#9733;</span>
-                    <span>1 &#9733;</span>
+                    <span
+                      className="filter-"
+                      onClick={() => handleClickVote(4)}
+                      id="number"
+                    >
+                      4 &#9733;
+                    </span>
+                    <span
+                      className="filter-"
+                      onClick={() => handleClickVote(3)}
+                      id="number"
+                    >
+                      3 &#9733;
+                    </span>
+                    <span
+                      className="filter-"
+                      onClick={() => handleClickVote(2)}
+                      id="number"
+                    >
+                      2 &#9733;
+                    </span>
+                    <span
+                      className="filter-"
+                      onClick={() => handleClickVote(1)}
+                      id="number"
+                    >
+                      1 &#9733;
+                    </span>
                   </div>
                 </div>
               </>
@@ -836,6 +907,7 @@ function Comment({ id, products }) {
             </div>
           </>
         )}
+
         {currentTableData().map(
           (item, index) =>
             item.v_product_id == product_id && (
@@ -979,30 +1051,6 @@ function Comment({ id, products }) {
             />
           </>
         )}
-
-        {/* <div className="review-pages">
-                    <ul>
-                        <li>
-                            <Link to ="detail" className="img-noactive">
-                                <img alt="/" src="https://icons.veryicon.com/png/o/miscellaneous/test-2/prev.png" width="20" height="20"/>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="page-active" to="/:slug">1</Link>
-                        </li>
-                        <li>
-                            <Link to="/:slug">2</Link>
-                        </li>
-                        <li>
-                            <Link to="/:slug">3</Link>
-                        </li>
-                        <li>
-                            <Link to ="detail">
-                                <img alt="/" src="https://cdn-icons-png.flaticon.com/512/130/130884.png" width="20" height="20"/>
-                            </Link>
-                        </li>
-                    </ul>
-                </div> */}
       </div>
     </div>
   );

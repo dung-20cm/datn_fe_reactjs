@@ -13,7 +13,7 @@ const settingsSlide = {
   className: "deal-hot-swiper",
 };
 
-function ProductViewedMobile({ deal, disCount }) {
+function ProductViewed({ deal, disCount }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -57,7 +57,7 @@ function ProductViewedMobile({ deal, disCount }) {
         </div>
       ) : (
         <Swiper {...settingsSlide}>
-          {products.map((item, index) => (
+          {products.slice(1, 20).map((item, index) => (
             <SwiperSlide key={index}>
               <div className="dashboard-product--item">
                 <Link
@@ -132,4 +132,4 @@ function ProductViewedMobile({ deal, disCount }) {
     </>
   );
 }
-export default ProductViewedMobile;
+export default ProductViewed;

@@ -76,7 +76,7 @@
         position: fixed;
         inset: 0px;
         background: rgba(0, 0, 0, 0.53);
-        z-index: 1550;
+        z-index: 2000;
 
         .login-container {
             position: relative;
@@ -219,7 +219,7 @@
 
                     .left-content-heading-input {
                         position: relative;
-                        z-index: 1555;
+                        z-index: 1999;
 
                         input::before {
                             content: "";
@@ -340,7 +340,7 @@
                                 left: 0px;
                                 top: 50%;
                                 transform: translateY(-50%);
-                                z-index: 1555;
+                                z-index: 1999;
                             }
 
                             span {
@@ -349,7 +349,7 @@
                                 display: inline-block;
                                 padding: 0px 20px;
                                 position: relative;
-                                z-index: 1555;
+                                z-index: 1999;
                             }
                         }
 

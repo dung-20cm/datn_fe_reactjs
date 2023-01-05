@@ -14,12 +14,11 @@ const ratingApi = {
     }
   },
 
-  // async getListRateByProducts(id) {
-  async getListRateByProducts(page, page_size, id) {
+  async getListRateByProducts(params) {
     try {
-      // const url = `vote/lists?page=1&page_size=20&product_id=${id}`;
-      const url = `vote/lists?page=${page}&page_size=${page_size}&product_id=${id}`;
-      const response = await axiosClient.get(url);
+      const newParams = { ...params };
+      const url = `vote/lists/?${params}`;
+      const response = await axiosClient.get(url, params);
 
       if (response.status === 200) {
         return response.data;

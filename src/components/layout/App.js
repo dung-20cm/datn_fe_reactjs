@@ -46,7 +46,10 @@ function App() {
         {route_item}
         <Footers />
 
-        <div className={`scrollToTop ${off_fixed}`} onClick={onClickActive}>
+        <div
+          className={`scrollToTop ${off_fixed} ${theme}`}
+          onClick={onClickActive}
+        >
           <i className="fa fa-chevron-up"></i>
         </div>
       </Provider>

@@ -44,7 +44,12 @@ $themes: (
   bgInputLogin:(
     darkTheme: $bginputLoginDark,
     lightTheme: $bginputLogin
-  )
+  ),
+
+  bgbtnScroll:(
+    darkTheme: $bgscrollBtnDark,
+    lightTheme: $bgscrollBtnLight
+  ),
 );
 
 @mixin styles($mode) {

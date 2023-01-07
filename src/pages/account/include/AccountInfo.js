@@ -116,7 +116,8 @@ function AccountInfo() {
                 ></img>
                 <h4>Thông tin tài khoản</h4>
               </div>
-              <SideNavBar />
+
+              {isWideScreen() && <SideNavBar />}
 
               <div className="right-container">
                 <div className="heading-title">Thông tin tài khoản</div>
@@ -126,50 +127,101 @@ function AccountInfo() {
                       <span className="info-title">Thông tin cá nhân</span>
                       <div className="info-form">
                         <form onSubmit={updateInfo}>
-                          <div className="form-info">
-                            <div className="form-avatar">
-                              <div className="avatar-view">
-                                <img
-                                  src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
-                                  alt="avatar"
-                                />
-                                <div className="avatar-edit">
+                          {isWideScreen() ? (
+                            <div className="form-info">
+                              <div className="form-avatar">
+                                <div className="avatar-view">
                                   <img
-                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/account/edit.png"
-                                    alt="edit"
+                                    src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
+                                    alt="avatar"
                                   />
+                                  <div className="avatar-edit">
+                                    <img
+                                      src="https://frontend.tikicdn.com/_desktop-next/static/img/account/edit.png"
+                                      alt="edit"
+                                    />
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div className="form-name">
-                              <div className="form-control">
-                                <label>Họ & Tên</label>
-                                <div className="input-label">
+                              <div className="form-name">
+                                <div className="form-control">
+                                  <label>Họ & Tên</label>
+                                  <div className="input-label">
+                                    <input
+                                      className="input"
+                                      type="text"
+                                      name="fullName"
+                                      maxLength="128"
+                                      placeholder="Thêm họ tên"
+                                      defaultValue={name}
+                                      onChange={(e) => setName(e.target.value)}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="form-control">
+                                  <label className="input-label">Địa chỉ</label>
                                   <input
                                     className="input"
                                     type="text"
-                                    name="fullName"
+                                    name="userName"
                                     maxLength="128"
-                                    placeholder="Thêm họ tên"
-                                    defaultValue={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Nhập địa chỉ"
+                                    defaultValue={address}
+                                    onChange={(e) => setAddress(e.target.value)}
                                   />
                                 </div>
                               </div>
-                              <div className="form-control">
-                                <label className="input-label">Địa chỉ</label>
-                                <input
-                                  className="input"
-                                  type="text"
-                                  name="userName"
-                                  maxLength="128"
-                                  placeholder="Nhập địa chỉ"
-                                  defaultValue={address}
-                                  onChange={(e) => setAddress(e.target.value)}
-                                />
-                              </div>
                             </div>
-                          </div>
+                          ) : (
+                            <>
+                              <div className="form-info">
+                                <div className="form-avatar form-control">
+                                  <label>Avatar</label>
+                                  <div className="avatar-view">
+                                    <img
+                                      src="https://salt.tikicdn.com/cache/512x512/ts/avatar/b9/42/e9/5d6bd301d4a6fb334877b9ae5082f483.jpg"
+                                      alt="avatar"
+                                    />
+                                    <div className="avatar-edit">
+                                      <img
+                                        src="https://frontend.tikicdn.com/_desktop-next/static/img/account/edit.png"
+                                        alt="edit"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="form-name">
+                                <div className="form-control">
+                                  <label>Họ & Tên</label>
+                                  <div className="input-label">
+                                    <input
+                                      className="input"
+                                      type="text"
+                                      name="fullName"
+                                      maxLength="128"
+                                      placeholder="Thêm họ tên"
+                                      defaultValue={name}
+                                      onChange={(e) => setName(e.target.value)}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="form-control">
+                                  <label className="input-label">Địa chỉ</label>
+                                  <input
+                                    className="input"
+                                    type="text"
+                                    name="userName"
+                                    maxLength="128"
+                                    placeholder="Nhập địa chỉ"
+                                    defaultValue={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                  />
+                                </div>
+                              </div>
+                            </>
+                          )}
+
                           <div className="form-control">
                             <label className="input-label1">Ngày sinh</label>
                             <div className="form-select">
@@ -327,7 +379,8 @@ function AccountInfo() {
                         </form>
                       </div>
                     </div>
-                    <div className="info-vertical" />
+                    {isWideScreen() && <div className="info-vertical" />}
+
                     <div className="info-right">
                       <span className="info-title">Số điện thoại và Email</span>
                       <div className="list-container">
@@ -459,7 +512,7 @@ function AccountInfo() {
         </>
       )}
 
-      {!isWideScreen() && <AccountSetting />}
+      {/* {!isWideScreen() && <AccountSetting />} */}
     </>
   );
 }

@@ -142,81 +142,161 @@ function Product({ products, pro_price, loading }) {
                 </div>
 
                 <div className="addtocart">
-                  <div className="count">
-                    <p>Số Lượng</p>
-                    <div className="group-input">
-                      <button
-                        disabled={`${count < 2 ? "{true}" : ""}`}
-                        className={`${count < 2 ? "disable" : "enable"}`}
-                        onClick={() => setCount(count - 1)}
-                      >
-                        <img
-                          alt="/"
-                          src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
-                          width="20"
-                          height="20"
-                        />
-                      </button>
-                      <input
-                        type="text"
-                        value={count}
-                        className="input"
-                        readOnly
-                      ></input>
-                      <button
-                        className="enable"
-                        onClick={() => setCount(count + 1)}
-                      >
-                        <img
-                          alt="/"
-                          src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
-                          width="20"
-                          height="20"
-                        />
-                      </button>
-                    </div>
-                    {localStorage.getItem("accessToken") ? (
-                      <div className="group-button">
+                  {isWideScreen() ? (
+                    <div className="count">
+                      <p>Số Lượng</p>
+                      <div className="group-input">
                         <button
-                          className={`add-to-cart ${added && "added"} btnadd`}
-                          onClick={handleAdd}
+                          disabled={`${count < 2 ? "{true}" : ""}`}
+                          className={`${count < 2 ? "disable" : "enable"}`}
+                          onClick={() => setCount(count - 1)}
                         >
-                          <div className="default">Add to cart</div>
-                          <div className="success">Added</div>
-                          <div className="cart">
-                            <div>
-                              <div></div>
-                              <div></div>
-                            </div>
-                          </div>
-                          <div className="dots"></div>
+                          <img
+                            alt="/"
+                            src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
+                            width="20"
+                            height="20"
+                          />
+                        </button>
+                        <input
+                          type="text"
+                          value={count}
+                          className="input"
+                          readOnly
+                        ></input>
+                        <button
+                          className="enable"
+                          onClick={() => setCount(count + 1)}
+                        >
+                          <img
+                            alt="/"
+                            src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
+                            width="20"
+                            height="20"
+                          />
                         </button>
                       </div>
-                    ) : (
-                      <div>
-                        <Popup
-                          modal
-                          trigger={
-                            <div className="group-button">
-                              <button className="add-to-cart">
-                                <div className="default">Add to cart</div>
-                                <div className="success">Added</div>
-                                <div className="cart">
-                                  <div>
-                                    <div></div>
-                                    <div></div>
-                                  </div>
-                                </div>
-                                <div className="dots"></div>
-                              </button>
+                      {localStorage.getItem("accessToken") ? (
+                        <div className="group-button">
+                          <button
+                            className={`add-to-cart ${added && "added"} btnadd`}
+                            onClick={handleAdd}
+                          >
+                            <div className="default">Add to cart</div>
+                            <div className="success">Added</div>
+                            <div className="cart">
+                              <div>
+                                <div></div>
+                                <div></div>
+                              </div>
                             </div>
-                          }
-                        >
-                          <Login />
-                        </Popup>
+                            <div className="dots"></div>
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <Popup
+                            modal
+                            trigger={
+                              <div className="group-button">
+                                <button className="add-to-cart">
+                                  <div className="default">Add to cart</div>
+                                  <div className="success">Added</div>
+                                  <div className="cart">
+                                    <div>
+                                      <div></div>
+                                      <div></div>
+                                    </div>
+                                  </div>
+                                  <div className="dots"></div>
+                                </button>
+                              </div>
+                            }
+                          >
+                            <Login />
+                          </Popup>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="count mobile">
+                      <div className="quantity">
+                        <p>Số Lượng:</p>
+                        <div className="group-input">
+                          <button
+                            disabled={`${count < 2 ? "{true}" : ""}`}
+                            className={`${count < 2 ? "disable" : "enable"}`}
+                            onClick={() => setCount(count - 1)}
+                          >
+                            <img
+                              alt="/"
+                              src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
+                              width="20"
+                              height="20"
+                            />
+                          </button>
+                          <input
+                            type="text"
+                            value={count}
+                            className="input"
+                            readOnly
+                          ></input>
+                          <button
+                            className="enable"
+                            onClick={() => setCount(count + 1)}
+                          >
+                            <img
+                              alt="/"
+                              src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
+                              width="20"
+                              height="20"
+                            />
+                          </button>
+                        </div>
                       </div>
-                    )}
-                  </div>
+                      {localStorage.getItem("accessToken") ? (
+                        <div className="group-button">
+                          <button
+                            className={`add-to-cart ${added && "added"} btnadd`}
+                            onClick={handleAdd}
+                          >
+                            <div className="default">Add to cart</div>
+                            <div className="success">Added</div>
+                            <div className="cart">
+                              <div>
+                                <div></div>
+                                <div></div>
+                              </div>
+                            </div>
+                            <div className="dots"></div>
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <Popup
+                            modal
+                            trigger={
+                              <div className="group-button">
+                                <button className="add-to-cart">
+                                  <div className="default">Add to cart</div>
+                                  <div className="success">Added</div>
+                                  <div className="cart">
+                                    <div>
+                                      <div></div>
+                                      <div></div>
+                                    </div>
+                                  </div>
+                                  <div className="dots"></div>
+                                </button>
+                              </div>
+                            }
+                          >
+                            <Login />
+                          </Popup>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

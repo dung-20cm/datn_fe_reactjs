@@ -24,7 +24,17 @@
         color: rgb(13, 92, 182);
         border-bottom: 2px solid rgb(13, 92, 182);
     }
+
+    @media (max-width: 767px) {
+        padding-left: 10px;
+        span{
+            max-width: 70px;
+            margin-right: 20px;
+        }
+    }
 }
+
+
 
 .order-search-input {
     width: 100%;
@@ -38,6 +48,10 @@
         transform: translateY(-50%);
         width: 24px;
         height: 24px;
+        
+        @media (max-width:768px){
+            left: 20px;
+        }
     }
 
     .search-input-bar {
@@ -62,6 +76,10 @@
         padding: 0px 6px 0px 16px;
         border-left: 2px solid rgb(221, 221, 227);
         cursor: pointer;
+    }
+
+    @media (max-width:768px){
+        padding: 0 10px;
     }
 }
 
@@ -184,6 +202,11 @@
         }
     }
     
+    @media (max-width:768px){
+        .list-product .list-product-info .list-product-name .number{
+            margin-top: 0;
+        }
+    }
 }
 
 .alert-cart {

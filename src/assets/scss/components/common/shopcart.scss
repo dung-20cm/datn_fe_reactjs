@@ -565,3 +565,14 @@
         }
     }    
 }
+
+
+@media (max-width:768px){
+    .sc-container{
+        width: 100%;
+        .content{
+            flex-wrap: wrap;
+            width: 100%;
+        }
+    }
+}

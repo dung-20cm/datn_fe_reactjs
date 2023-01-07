@@ -3,6 +3,7 @@ import SideNavBar from "./SideNavBar";
 import { Link } from "react-router-dom";
 import cartApi from "../../../api/CartService";
 import Skeleton from "react-loading-skeleton";
+import { isWideScreen } from "../../../helpers/screen";
 
 function OrderManagement() {
   useEffect(() => {
@@ -132,20 +133,34 @@ function OrderManagement() {
               <h4>Đơn hàng của tôi</h4>
             </div>
             <div className="page-container">
-              <SideNavBar />
+              {isWideScreen() && <SideNavBar />}
               <div className="right-container">
                 <div className="heading-title">Đơn hàng của tôi</div>
-                <div className="order-tablist">
-                  {tabs.map((item, index) => (
-                    <div
-                      className={`order-tab${item.status ? "-active" : ""}`}
-                      key={index}
-                      onClick={() => changeTab(item.id)}
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-                </div>
+                {isWideScreen() ? (
+                  <div className="order-tablist">
+                    {tabs.map((item, index) => (
+                      <div
+                        className={`order-tab${item.status ? "-active" : ""}`}
+                        key={index}
+                        onClick={() => changeTab(item.id)}
+                      >
+                        {item.title}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="order-tablist mobile">
+                    <span>Trạng thái</span>
+                    <select>
+                      <option value="1">Tất cả đơn</option>
+                      <option value="2">Chờ thanh toán</option>
+                      <option value="3">Đang xử lý</option>
+                      <option value="4">Đang vận chuyển</option>
+                      <option value="5">Đã giao</option>
+                      <option value="6">Đã hủy</option>
+                    </select>
+                  </div>
+                )}
 
                 <div className="order-search-input">
                   <svg
@@ -161,12 +176,21 @@ function OrderManagement() {
                   >
                     <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                   </svg>
-                  <input
-                    className="search-input-bar"
-                    name="search"
-                    placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm"
-                    type="search"
-                  ></input>
+                  {isWideScreen() ? (
+                    <input
+                      className="search-input-bar"
+                      name="search"
+                      placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm"
+                      type="search"
+                    ></input>
+                  ) : (
+                    <input
+                      className="search-input-bar"
+                      name="search"
+                      placeholder="Tìm đơn hàng "
+                      type="search"
+                    ></input>
+                  )}
                   <div className="search-input-right">Tìm đơn hàng</div>
                 </div>
                 <div className="order-container">
@@ -201,16 +225,24 @@ function OrderManagement() {
                                           <span className="number">
                                             x{item2.od_qty}
                                           </span>
+                                          <span>
+                                            {(
+                                              item2.od_price * item2.od_qty
+                                            ).toLocaleString()}{" "}
+                                            ₫
+                                          </span>
                                         </div>
                                       </div>
-                                      <div className="list-product-price">
-                                        <span>
-                                          {(
-                                            item2.od_price * item2.od_qty
-                                          ).toLocaleString()}{" "}
-                                          ₫
-                                        </span>
-                                      </div>
+                                      {isWideScreen() && (
+                                        <div className="list-product-price">
+                                          <span>
+                                            {(
+                                              item2.od_price * item2.od_qty
+                                            ).toLocaleString()}{" "}
+                                            ₫
+                                          </span>
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 ))
@@ -237,16 +269,24 @@ function OrderManagement() {
                                           <span className="number">
                                             x{item2.od_qty}
                                           </span>
+                                          <span>
+                                            {(
+                                              item2.od_price * item2.od_qty
+                                            ).toLocaleString()}{" "}
+                                            ₫
+                                          </span>
                                         </div>
                                       </div>
-                                      <div className="list-product-price">
-                                        <span>
-                                          {(
-                                            item2.od_price * item2.od_qty
-                                          ).toLocaleString()}{" "}
-                                          ₫
-                                        </span>
-                                      </div>
+                                      {isWideScreen() && (
+                                        <div className="list-product-price">
+                                          <span>
+                                            {(
+                                              item2.od_price * item2.od_qty
+                                            ).toLocaleString()}{" "}
+                                            ₫
+                                          </span>
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 ))

@@ -307,4 +307,56 @@
             }
         }
     }
+
+    @media (max-width:768px){
+
+        width: 100%;
+        .heading-title {
+            margin: 10px;
+        }
+
+        .info-container{
+            flex-wrap: wrap !important;
+
+            .info-left{
+                .info-form form{
+                    .form-info{
+                        // justify-content: center;
+                        margin-bottom: 20px;
+                    }
+
+                    
+                    .form-control{
+                        label{
+                            margin: 0;
+                            min-width: 70px;
+                            width: 70px;
+                            max-width: 70px;
+                        }
+                        input{
+                            width: 100%;
+                        }
+
+                        .check-label{
+                            width: 85px;
+                            max-width: 140px;
+                            margin: 0;
+
+                            input{
+                                width: 30%;
+                            }
+                        }
+                    }
+
+                    .form-select select{
+                        width: 90px;
+                    }
+                }
+            }
+
+            .info-right{
+                width: 100% !important;
+            }
+        }
+    }
 }

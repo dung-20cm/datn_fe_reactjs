@@ -31,37 +31,6 @@ export default () => {
               </div>
               <div className="login-right">
                 <img src={"/img/img-login.jpeg"} alt="decorLogin" />
-                {/* <div className="login-right-content">
-                  <h4>Mua sắm tại Hasaki</h4>
-                  <span>Siêu ưu đãi mỗi ngày</span>
-                </div>
-                <div className="login-right-footer">
-                  <p className="login-footer-text1">
-                    <span>Hoặc tiếp tục bằng</span>
-                  </p>
-                  <ul>
-                    <li>
-                      <img
-                        src="https://salt.tikicdn.com/ts/upload/3a/22/45/0f04dc6e4ed55fa62dcb305fd337db6c.png"
-                        alt="ads"
-                        width="38"
-                        height="38"
-                      />
-                    </li>
-                    <li>
-                      <img
-                        src="https://salt.tikicdn.com/ts/upload/1c/ac/e8/141c68302262747f5988df2aae7eb161.png"
-                        alt="ads"
-                        width="38"
-                        height="38"
-                      />
-                    </li>
-                  </ul>
-                  <p className="note">
-                    Bằng việc tiếp tục, bạn đã chấp nhận{" "}
-                    <Link to="/">điều khoản sử dụng</Link>
-                  </p>
-                </div> */}
               </div>
             </div>
           </div>

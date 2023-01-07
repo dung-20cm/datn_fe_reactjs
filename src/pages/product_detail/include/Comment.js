@@ -791,19 +791,6 @@ function Comment({ id, products }) {
           <div className="review-img">
             {isWideScreen() && (
               <>
-                {/* <div className="imgs">
-                                    <div className="imgs-header">
-                                        Tất cả hình ảnh (100)
-                                    </div>
-                                    <div className="imgs-inner">
-                                        <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
-                                        <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
-                                        <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
-                                        <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
-                                        <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
-                                        <img alt="/" src="https://dienmaythienphu.vn/wp-content/uploads/2022/01/treotuong-2604-1622626429.jpg" />
-                                    </div>
-                                </div> */}
                 <div className="review-filter">
                   <div className="filter-label">Lọc xem theo : </div>
                   <div className="filter-inner">
@@ -921,19 +908,8 @@ function Comment({ id, products }) {
                     </div>
                     <div>
                       <div className="user-name">User {item.v_product_id}</div>
-                      {/* <div className="user-date">Đã tham gia 2 tuần</div> */}
                     </div>
                   </div>
-                  {/* <div className="review-cmt-user-info">
-                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/c6/67/f1/444fc9e1869b5d4398cdec3682af7f14.png" width="20" height="20"/>
-                                Đã viết:
-                                <span>11 Đánh giá</span>
-                            </div>
-                            <div className="review-cmt-user-info">
-                                <img alt="/" src="https://salt.tikicdn.com/ts/upload/c6/67/f1/444fc9e1869b5d4398cdec3682af7f14.png" width="20" height="20"/>
-                                Đã nhận:
-                                <span>69 Lượt cảm ơn</span>
-                            </div> */}
                 </div>
                 <div className="review-user-content">
                   <div className="review-title">{countRate(item.v_number)}</div>
@@ -947,16 +923,8 @@ function Comment({ id, products }) {
                     Đã mua hàng
                   </div>
                   <div className="review-user-text">{item.v_content}</div>
-                  {/* <div className="text-created-date">
-                                <span>Đánh giá vào 5 ngày trước</span>
-                                <span className="rated">Đã dùng 3 ngày</span>
-                            </div>
-                            <span className="thank">
-                                <img alt="/" src="https://i.pinimg.com/originals/f8/2b/b1/f82bb1b3bb1df050238910c0f8632491.jpg" width="20" height="20"/>
-                                <span>Hữu ích (100)</span>
-                            </span> */}
+
                   <span className="thank">Bình luận</span>
-                  {/* <span className="thank">Chia sẻ</span> */}
                   {userId == item.v_user_id && (
                     <span
                       className="thank"

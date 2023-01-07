@@ -12,6 +12,7 @@ import { store } from "../../store/store";
 import authApi from "../../api/AuthService";
 import cartApi from "../../api/CartService";
 import { useTheme } from "../utils/useTheme";
+import { isWideScreen } from "../../helpers/screen";
 
 function ShopCart() {
   const cart = useSelector((state) => state.cartReduce.listCart);
@@ -100,55 +101,195 @@ function ShopCart() {
           <h4>Giỏ hàng</h4>
         </div>
         <div className="content">
-          <div className="left-content">
-            <div className="left-content-header">
-              <label>
-                <span>Sản phẩm</span>
-              </label>
-              <span>Đơn giá</span>
-              <span>Số lượng</span>
-              <span>Thành tiền</span>
-              <span>
-                <img
-                  className="delete-icon"
-                  onClick={() => dispatch(removeAll())}
-                  src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                  alt="deleted"
-                />
-              </span>
+          {isWideScreen() ? (
+            <div className="left-content">
+              <div className="left-content-header">
+                <label>
+                  <span>Sản phẩm</span>
+                </label>
+                <span>Đơn giá</span>
+                <span>Số lượng</span>
+                <span>Thành tiền</span>
+                <span>
+                  <img
+                    className="delete-icon"
+                    onClick={() => dispatch(removeAll())}
+                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                    alt="deleted"
+                  />
+                </span>
+              </div>
+              <div className="left-content-container">
+                <div className="list-cart">
+                  {cart ? (
+                    cart.map((item, index) => (
+                      <>
+                        <div className="product-item" key={index}>
+                          <div className="row">
+                            <div className="col1">
+                              <div className="product-detail">
+                                <Link to={`/${item.pro_slug}/${item.id}`}>
+                                  <img
+                                    alt="sda"
+                                    src={item.pro_avatar}
+                                    width="80"
+                                    height="80"
+                                  />
+                                </Link>
+                                <div className="product-content">
+                                  <Link
+                                    to={`/${item.pro_slug}/${item.id}`}
+                                    className="product-name"
+                                  >
+                                    {item.pro_name}
+                                  </Link>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col2">
+                              <span>{item.pro_price.toLocaleString()} ₫</span>
+                            </div>
+                            <div className="col3">
+                              <div className="count">
+                                <div className="group-input">
+                                  <button
+                                    disabled={`${
+                                      item.quantity < 2 ? "{true}" : ""
+                                    }`}
+                                    className={`${
+                                      item.quantity < 2 ? "disable" : "enable"
+                                    }`}
+                                    onClick={() =>
+                                      dispatch(decrementQuantity(item))
+                                    }
+                                  >
+                                    <img
+                                      alt="/"
+                                      src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
+                                      width="20"
+                                      height="20"
+                                    />
+                                  </button>
+                                  <input
+                                    type="text"
+                                    value={item.quantity}
+                                    className="input"
+                                    readOnly
+                                  ></input>
+                                  <button
+                                    className="enable"
+                                    onClick={() =>
+                                      dispatch(incrementQuantity(item))
+                                    }
+                                  >
+                                    <img
+                                      alt="/"
+                                      src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
+                                      width="20"
+                                      height="20"
+                                    />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col4">
+                              <span>
+                                {(
+                                  item.pro_price * item.quantity
+                                ).toLocaleString()}{" "}
+                                ₫
+                              </span>
+                            </div>
+                            <div className="col5">
+                              <span>
+                                <img
+                                  src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                  alt="deleted"
+                                  onClick={() => dispatch(removeItem(item))}
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="left-content-container">
-              <div className="list-cart">
-                {cart ? (
-                  cart.map((item, index) => (
-                    <>
-                      <div className="product-item" key={index}>
-                        <div className="row">
-                          <div className="col1">
-                            <div className="product-detail">
-                              <Link to={`/${item.pro_slug}/${item.id}`}>
+          ) : (
+            <div className="left-content mobile">
+              {/* <div className="left-content-header">
+                <label>
+                  <span>Sản phẩm</span>
+                </label>
+                <span>Đơn giá</span>
+                <span>Số lượng</span>
+                <span>Thành tiền</span>
+                <span>
+                  <img
+                    className="delete-icon"
+                    onClick={() => dispatch(removeAll())}
+                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                    alt="deleted"
+                  />
+                </span>
+              </div> */}
+              <div className="left-content-container">
+                <div className="list-cart">
+                  {cart ? (
+                    cart.map((item, index) => (
+                      <>
+                        <div className="product-item" key={index}>
+                          <div
+                            style={{
+                              display: "flex",
+                            }}
+                          >
+                            <Link to={`/${item.pro_slug}/${item.id}`}>
+                              <div
+                                className="product-image"
+                                style={{ marginRight: 15 }}
+                              >
                                 <img
                                   alt="sda"
                                   src={item.pro_avatar}
                                   width="80"
                                   height="80"
+                                  style={{ width: "100%", marginRight: 15 }}
                                 />
-                              </Link>
-                              <div className="product-content">
-                                <Link
-                                  to={`/${item.pro_slug}/${item.id}`}
+                              </div>
+                            </Link>
+                            <div>
+                              <Link to={`/${item.pro_slug}/${item.id}`}>
+                                <div
                                   className="product-name"
+                                  style={{
+                                    marginBottom: 5,
+                                    color: "black",
+                                    fontSize: 13,
+                                  }}
                                 >
                                   {item.pro_name}
-                                </Link>
+                                </div>
+                              </Link>
+                              <div className="product-price">
+                                <span>{item.pro_price.toLocaleString()} ₫</span>
                               </div>
                             </div>
                           </div>
-                          <div className="col2">
-                            <span>{item.pro_price.toLocaleString()} ₫</span>
-                          </div>
-                          <div className="col3">
-                            <div className="count">
+                          <div
+                            className="product-count"
+                            style={{
+                              marginTop: 10,
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <span style={{ marginRight: 35 }}>Số lượng</span>
+                            <div className="count" style={{ width: 250 }}>
                               <div className="group-input">
                                 <button
                                   disabled={`${
@@ -173,6 +314,11 @@ function ShopCart() {
                                   value={item.quantity}
                                   className="input"
                                   readOnly
+                                  style={{
+                                    width: 36,
+                                    height: 23,
+                                    textAlign: "center",
+                                  }}
                                 ></input>
                                 <button
                                   className="enable"
@@ -190,33 +336,48 @@ function ShopCart() {
                               </div>
                             </div>
                           </div>
-                          <div className="col4">
-                            <span>
-                              {(
-                                item.pro_price * item.quantity
-                              ).toLocaleString()}{" "}
-                              ₫
-                            </span>
-                          </div>
-                          <div className="col5">
-                            <span>
-                              <img
-                                src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                                alt="deleted"
-                                onClick={() => dispatch(removeItem(item))}
-                              />
-                            </span>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div
+                              className="product-quantity"
+                              style={{ marginTop: 10 }}
+                            >
+                              <span style={{ marginRight: 25 }}>
+                                Thành tiền
+                              </span>
+                              <span>
+                                {(
+                                  item.pro_price * item.quantity
+                                ).toLocaleString()}{" "}
+                                ₫
+                              </span>
+                            </div>
+                            <div className="product-removeProduct">
+                              <span>
+                                <img
+                                  src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
+                                  alt="deleted"
+                                  onClick={() => dispatch(removeItem(item))}
+                                />
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  ))
-                ) : (
-                  <></>
-                )}
+                      </>
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
+
           <div className="right-content">
             <div className="right-inner">
               <div className="delivery">

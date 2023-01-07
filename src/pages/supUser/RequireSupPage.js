@@ -22,7 +22,7 @@ const RequireSupPage = () => {
           Messenger ở góc dưới bên trái màn hình. Đảm bảo bạn đã có tài khoản và
           đăng nhập vào hệ thống để liên hệ với shop
         </p>
-        <img src="" alt="imgMessenger" />
+        <img src={"/img/supUser/imgMesss.jpg"} alt="imgMessenger" />
         <div className="steps">Cách 2: Liên hệ qua số điện thoại </div>
         <p>
           - Gọi điện trực tiếp để trao đổi với shop: Bạn có thể goi điện với

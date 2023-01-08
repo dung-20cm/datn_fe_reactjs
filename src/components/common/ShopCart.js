@@ -400,7 +400,7 @@ function ShopCart() {
                 </div>
               </div>
               <button className="btn-buy" onClick={Order}>
-                Mua hàng
+                Đặt hàng
               </button>
               {isShow ? (
                 <div className="alert-cart">

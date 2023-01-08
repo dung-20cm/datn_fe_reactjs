@@ -221,22 +221,6 @@ function ShopCart() {
             </div>
           ) : (
             <div className="left-content mobile">
-              {/* <div className="left-content-header">
-                <label>
-                  <span>Sản phẩm</span>
-                </label>
-                <span>Đơn giá</span>
-                <span>Số lượng</span>
-                <span>Thành tiền</span>
-                <span>
-                  <img
-                    className="delete-icon"
-                    onClick={() => dispatch(removeAll())}
-                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/trash.svg"
-                    alt="deleted"
-                  />
-                </span>
-              </div> */}
               <div className="left-content-container">
                 <div className="list-cart">
                   {cart ? (

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import cartApi from "../../../api/CartService";
 import Skeleton from "react-loading-skeleton";
 import { useTheme } from "../../../components/utils/useTheme";
+import { isWideScreen } from "../../../helpers/screen";
 
 function OrderDetail() {
   const theme = useTheme();
@@ -89,23 +90,38 @@ function OrderDetail() {
             <h4>Đơn hàng của tôi</h4>
           </div>
           <div className="page-container">
-            <SideNavBar />
+            {isWideScreen() && <SideNavBar />}
             <div className={`right-container ${theme}`}>
               <div className="heading-title">
                 <span>Chi tiết đơn hàng #{id} </span>
-                <span className="heading-title-bold"></span>
+                {/* <span className="heading-title-bold"></span> */}
               </div>
               <div className="heading-date">Ngày đặt hàng: 00:00 2/11/2022</div>
-              <div className="heading-detail">THÔNG BÁO</div>
-              <div className="heading-detail-container1">
-                <div className="left-container1">00:00 15/12/2022</div>
-                <div className="right-container1">Giao hàng thành công</div>
-              </div>
+              {isWideScreen() ? (
+                <>
+                  <div className="heading-detail">THÔNG BÁO</div>
+                  <div className="heading-detail-container1">
+                    <div className="left-container1">00:00 15/12/2022</div>
+                    <div className="right-container1">Giao hàng thành công</div>
+                  </div>
+                </>
+              ) : (
+                <div style={{ display: "flex" }}>
+                  <div className="heading--left heading-detail">THÔNG BÁO</div>
+                  <div
+                    className="heading-detail-right"
+                    style={{ paddingLeft: 15 }}
+                  >
+                    Giao hàng thành công
+                  </div>
+                </div>
+              )}
+
               <div className="heading-detail-container2">
                 <div className="order-box-content">
                   <div className="box-title">ĐỊA CHỈ NGƯỜI NHẬN</div>
                   <div className="box-content">
-                    <div className="box-main">{name}</div>
+                    <div className="box-sub">{name}</div>
                     <div className="box-sub">Địa chỉ: {address}</div>
                     <div className="box-sub">Điện thoại: {phone}</div>
                   </div>
@@ -131,64 +147,154 @@ function OrderDetail() {
                   </div>
                 </div>
               </div>
-              <div className="heading-detail-container3">
-                <div className="detail-title">
-                  <div className="title-tab1">
-                    <span>Sản phẩm</span>
-                  </div>
-                  <div className="title-tab2">
-                    <span>Giá</span>
-                  </div>
-                  <div className="title-tab2">
-                    <span>Số lượng</span>
-                  </div>
-                  <div className="title-tab2">
-                    <span>Giảm giá</span>
-                  </div>
-                  <div className="title-tab3">
-                    <span>Tạm tính</span>
+
+              {isWideScreen() && (
+                <div className="heading-detail-container3">
+                  <div className="detail-title">
+                    <div className="title-tab1">
+                      <span>Sản phẩm</span>
+                    </div>
+                    <div className="title-tab2">
+                      <span>Giá</span>
+                    </div>
+                    <div className="title-tab2">
+                      <span>Số lượng</span>
+                    </div>
+                    <div className="title-tab2">
+                      <span>Giảm giá</span>
+                    </div>
+                    <div className="title-tab3">
+                      <span>Tạm tính</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {productList.map((item, index) =>
                 item.products.map((item2, index) => (
                   <>
-                    <div className="heading-detail-container4" key={index}>
-                      <div className="title-tab1">
-                        <img src={item2.pro_avatar} alt="img" />
-                        <div className="tab1-text">
-                          <Link
-                            to={`/${item2.pro_slug}/${item2.id}`}
-                            style={{ color: "black" }}
-                          >
-                            {item2.pro_name}
-                          </Link>
-                          <div className="tab1-btn">
-                            <Link to={`/${item2.pro_slug}/${item2.id}`}>
-                              <button>Viết nhận xét</button>
+                    {isWideScreen() ? (
+                      <div className="heading-detail-container4" key={index}>
+                        <div className="title-tab1">
+                          <img src={item2.pro_avatar} alt="img" />
+                          <div className="tab1-text">
+                            <Link
+                              to={`/${item2.pro_slug}/${item2.id}`}
+                              style={{ color: "black" }}
+                            >
+                              {item2.pro_name}
                             </Link>
-                            <Link to={`/${item2.pro_slug}/${item2.id}`}>
-                              <button>Mua lại</button>
-                            </Link>
+                            <div className="tab1-btn">
+                              <Link to={`/${item2.pro_slug}/${item2.id}`}>
+                                <button>Viết nhận xét</button>
+                              </Link>
+                              <Link to={`/${item2.pro_slug}/${item2.id}`}>
+                                <button>Mua lại</button>
+                              </Link>
+                            </div>
                           </div>
                         </div>
+                        <div className="title-tab2">
+                          <span>{item2.pro_price.toLocaleString()} ₫</span>
+                        </div>
+                        <div className="title-tab2">
+                          <span>{item.od_qty}</span>
+                        </div>
+                        <div className="title-tab2">
+                          <span>{item2.pro_discount_value}.000 ₫</span>
+                        </div>
+                        <div className="title-tab3">
+                          <span>
+                            {(item.od_price * item.od_qty).toLocaleString()} ₫
+                          </span>
+                        </div>
                       </div>
-                      <div className="title-tab2">
-                        <span>{item2.pro_price.toLocaleString()} ₫</span>
-                      </div>
-                      <div className="title-tab2">
-                        <span>{item.od_qty}</span>
-                      </div>
-                      <div className="title-tab2">
-                        <span>{item2.pro_discount_value} ₫</span>
-                      </div>
-                      <div className="title-tab3">
-                        <span>
-                          {(item.od_price * item.od_qty).toLocaleString()} ₫
-                        </span>
-                      </div>
-                    </div>
+                    ) : (
+                      <>
+                        <div className="product-item" style={{ padding: 15 }}>
+                          <div
+                            style={{
+                              display: "flex",
+                            }}
+                          >
+                            <Link to={`/${item2.pro_slug}/${id}`}>
+                              <div
+                                className="product-image"
+                                style={{ marginRight: 15 }}
+                              >
+                                <img
+                                  alt="sda"
+                                  src={item2.pro_avatar}
+                                  width="80"
+                                  height="80"
+                                  style={{ width: "100%", marginRight: 15 }}
+                                />
+                              </div>
+                            </Link>
+                            <div>
+                              <Link to={`/${item2.pro_slug}/${id}`}>
+                                <div
+                                  className="product-name"
+                                  style={{
+                                    marginBottom: 5,
+                                    color: "black",
+                                    fontSize: 13,
+                                  }}
+                                >
+                                  {item2.pro_name}
+                                </div>
+                              </Link>
+                              <div className="product-price">
+                                <span>Giá </span>
+                                <span>
+                                  {item2.pro_price.toLocaleString()} ₫
+                                </span>
+                              </div>
+
+                              <div
+                                className="product-count"
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <span style={{ marginRight: 35 }}>
+                                  Số lượng
+                                </span>
+                                <span>{item.od_qty}</span>
+                              </div>
+
+                              <div className="product-quantity">
+                                <span style={{ marginRight: 25 }}>
+                                  Thành tiền
+                                </span>
+                                <span>
+                                  {(
+                                    item.od_price * item.od_qty
+                                  ).toLocaleString()}{" "}
+                                  ₫
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          style={{
+                            float: "right",
+                            padding: 15,
+                          }}
+                          className="btn-link"
+                        >
+                          <Link to={`/${item2.pro_slug}/${item2.id}`}>
+                            <button>Viết nhận xét</button>
+                          </Link>
+                          <Link to={`/${item2.pro_slug}/${item2.id}`}>
+                            <button>Mua lại</button>
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </>
                 ))
               )}

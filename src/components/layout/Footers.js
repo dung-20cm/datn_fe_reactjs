@@ -90,13 +90,6 @@ export default function Footers() {
               <Link to="/" className="small-text">
                 Chính sách hàng nhập khẩu
               </Link>
-
-              {/* <p className="security">
-              Hỗ trợ khách hàng: <Link to="/">hotro@tiki.vn</Link>
-            </p>
-            <p className="security mb-0">
-              Báo lỗi bảo mật: <Link to="/">security@tiki.vn</Link>
-            </p> */}
             </div>
             <div className="block">
               <h4>Về chúng tôi</h4>
@@ -145,26 +138,8 @@ export default function Footers() {
               <p className="small-text">
                 Kiểm tra sản phẩm trước khi nhận hàng
               </p>
-              {/*<p className="payment">*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*    <img className="icon" src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png" width="32" height="32" alt="test" />*/}
-              {/*</p>*/}
+
               <h4>Dịch vụ giao hàng</h4>
-              <p>
-                {/*<Link to="/">*/}
-                {/*<img src="https://static.wixstatic.com/media/6e68b4_245b828eb23a404b9aba586a8fb0292c~mv2.png/v1/crop/x_39,y_33,w_200,h_99/fill/w_110,h_54,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/images.png" width="68" height="33" alt="test" />*/}
-                {/*</Link>*/}
-              </p>
             </div>
             <div className="block">
               <h4>Kết nối với chúng tôi</h4>
@@ -197,57 +172,15 @@ export default function Footers() {
                   </li>
                 </ul>
               </div>
-              {/* <p>
-              <Link to="/">
-                <img
-                  className="icon"
-                  src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png"
-                  width="32"
-                  height="32"
-                  alt="test"
-                />
-              </Link>
-              <Link to="/">
-                <img
-                  className="icon"
-                  src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png"
-                  width="32"
-                  height="32"
-                  alt="test"
-                />
-              </Link>
-              <Link to="/">
-                <img
-                  className="icon"
-                  src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png"
-                  width="32"
-                  height="32"
-                  alt="test"
-                />
-              </Link>
-            </p> */}
+
               <h4 className="store-title">Tải ứng dụng trên điện thoại</h4>
-              <div className="d-flex">
-                {/*<img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/qrcode.png" height="80" width="80" alt="test" />*/}
-                {/*<div className="dowload-app">*/}
-                {/*<Link to="/">*/}
-                {/*    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/appstore.png" width="122" alt="test" />*/}
-                {/*</Link>*/}
-                {/*<Link to="/">*/}
-                {/*    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/playstore.png" width="122" alt="test" />*/}
-                {/*</Link>*/}
-                {/*</div>*/}
-              </div>
+              <div className="d-flex"></div>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* plupinchat  callphone*/}
       <CallPhone />
-      {/* <PlupinChat />   */}
-
-      {/* end plupin chat */}
     </>
   );
 }
